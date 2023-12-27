@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ event.name }}</title>
+</head>
+<body>
+    <h1>{{ event.name }}</h1>
+    <p>Date: {{ event.date }}</p>
+    <p>Location: {{ event.location }}</p>
+    <p>Price: {{ event.price }}</p>
+    <p>Organizer: {{ event.organizer.username }}</p>
+
+    <!-- Display Organizer's Rating -->
+    <p>Organizer's Rating: {{ event.organizer.get_organizer_rating }}/5</p>
+
+    <!-- Event Ratings -->
+    <h2>Ratings for this Event</h2>
+    <ul>
+        {% for rating in event.event_ratings.all %}
+            <li>{{ rating.user.username }} rated: {{ rating.rating }}/5</li>
+        {% empty %}
+            <li>No ratings yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

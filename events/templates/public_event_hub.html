@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Public Events</title>
+</head>
+<body>
+    <h1>Public Events</h1>
+    <ul>
+        {% for event in public_events %}
+            <li>
+                <strong>{{ event.name }}</strong><br>
+                Date: {{ event.date }}<br>
+                Location: {{ event.location }}<br>
+                <!-- Link to add this event to the user's event list -->
+                <a href="{% url 'add_to_my_events' event.id %}">Join Event</a>
+            </li>
+        {% empty %}
+            <li>No public events available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

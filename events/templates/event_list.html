@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Events</title>
+</head>
+<body>
+    <h1>All Events</h1>
+    <ul>
+        {% for event in events %}
+            <li>
+                <strong><a href="{% url 'event_detail' event.id %}">{{ event.name }}</a></strong><br>
+                Date: {{ event.date }}<br>
+                Location: {{ event.location }}<br>
+            </li>
+        {% empty %}
+            <li>No events available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

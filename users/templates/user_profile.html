@@ -1,0 +1,35 @@
+<!-- users/templates/users/user_profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.username }}'s Profile</title>
+    <p><strong>Location:</strong> {{ user.location }}</p>
+    <p><strong>Interests:</strong> {{ user.interest }}</p>
+    <p><strong>Organizer Rating:</strong> {{ organizer_rating }}/5</p>
+</head>
+<body>
+    <h1>{{ user.username }}'s Profile</h1>
+    <!-- Other user details -->
+
+    <h2>Last 5 Attended Events</h2>
+    <ul>
+        {% for user_event in user_events %}
+            <li>
+                {{ user_event.event.name }} - {{ user_event.event.date }}
+                <form action="{% url 'submit_rating' user_event.event.id %}" method="post">
+                    {% csrf_token %}
+                    <select name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <button type="submit">Submit Rating</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
